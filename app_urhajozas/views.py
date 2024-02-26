@@ -26,6 +26,7 @@ def urhajos_feltoltese_view_kuld(request):
     for sor in sorok[1:]:
         sortomb = sor.split('\t')
         Urhajos.objects.create(
+            az=int(sortomb[0]),
             nev=sortomb[1],
             orszag=sortomb[2],
             nem=sortomb[3],
@@ -65,6 +66,7 @@ def kuldetes_feltoltese_view_kuld(request):
         veg_day = int(vegstrtomb[2])
 
         Kuldetes.objects.create(
+            az=int(sortomb[0]),
             megnevezes=sortomb[1],
             kezdet=date(kezdet_year, kezdet_month, kezdet_day),
             veg=date(veg_year, veg_month, veg_day),
@@ -87,6 +89,9 @@ def kapcsolat_feltoltese_view_kuld(request):
     sorok = nyers.split('\r\n')
 
     for sor in sorok[1:]:
-        pass
+        sortomb = sor.split('\t')
+        az_urhajos = Urhajos.objects.get(az=int(sortomb[0])) 
+        a_kuldetes = Kuldetes.objects.get(az=int(sortomb[1])) 
+        a_kuldetes.resztvevoi.add(az_urhajos)
 
     return render(request, template, context)
