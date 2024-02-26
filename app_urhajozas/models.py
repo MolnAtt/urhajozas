@@ -6,6 +6,7 @@ class Urhajos(models.Model):
 
     # id nem fog kelleni!
 
+    az = models.IntegerField()
     nev = models.CharField(max_length=255)
     orszag = models.CharField(max_length=255)
     nem = models.CharField(max_length=1)
@@ -35,6 +36,7 @@ class Becenev(models.Model):
 
 class Kuldetes(models.Model):
 
+    az = models.IntegerField()
     megnevezes = models.CharField(max_length=256)
     kezdet = models.DateField()
     veg = models.DateField()
