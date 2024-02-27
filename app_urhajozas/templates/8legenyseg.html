@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8legenyseg</title>
+</head>
+<body>
+    <h1>8legenyseg feladat</h1>
+    <h2>{{ mettol }}-{{ meddig }}</h2>
+    
+    <table border="1">
+    <tr>
+        <th>küldetés neve</th>
+        <th>küldetés kezdete</th>
+        <th>legénység</th>
+        <th>ország</th>
+        <th>nem</th>
+    </tr>
+    {% for kuldetes in kuldetesek %}
+    <tr>
+        <td>{{ kuldetes.megnevezes }}</td>
+        <td>{{ kuldetes.kezdet }}</td>
+        <td>
+            {% for urhajos in kuldetes.resztvevoi.all %}
+            {{ urhajos }}
+            <br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+
+</body>
+</html>

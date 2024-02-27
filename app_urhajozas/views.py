@@ -95,3 +95,22 @@ def kapcsolat_feltoltese_view_kuld(request):
         a_kuldetes.resztvevoi.add(az_urhajos)
 
     return render(request, template, context)
+
+def legenyseg(request, mettol, meddig):
+    print(f'ezt kaptam: {mettol}-{meddig}')
+    template = '8legenyseg.html'
+
+    kuldetesek = []
+
+    for kuldetes in Kuldetes.objects.all().order_by('kezdet'):
+        if mettol <= kuldetes.kezdet.year and kuldetes.veg.year <= meddig:
+            kuldetesek.append(kuldetes)
+    
+    
+    
+    context = {
+        'mettol':mettol,
+        'meddig':meddig,
+        'kuldetesek':kuldetesek,
+    }
+    return render(request, template, context)

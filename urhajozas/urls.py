@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_urhajozas.views import feltoltes_view, urhajos_feltoltese_view, urhajos_feltoltese_view_kuld, kuldetes_feltoltese_view, kapcsolat_feltoltese_view, kuldetes_feltoltese_view_kuld, kapcsolat_feltoltese_view_kuld
+from app_urhajozas.views import feltoltes_view, urhajos_feltoltese_view, urhajos_feltoltese_view_kuld, kuldetes_feltoltese_view, kapcsolat_feltoltese_view, kuldetes_feltoltese_view_kuld, kapcsolat_feltoltese_view_kuld, legenyseg
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('urhajos/8legenyseg/<int:mettol>/<int:meddig>/', legenyseg),
     path('urhajos/feltoltes/', feltoltes_view),
     path('urhajos/feltoltes/urhajos/', urhajos_feltoltese_view),
     path('urhajos/feltoltes/urhajos/kuld/', urhajos_feltoltese_view_kuld),
